@@ -1,0 +1,8 @@
+- pipeline.id: main
+  path.config: "/etc/logstash/conf.d/main.conf"
+- pipeline.id: fallback
+  path.config: "/etc/logstash/conf.d/fallback.conf"
+- pipeline.id: apache-pipline
+  path.config: "/etc/logstash/conf.d/apache.conf"
+- pipeline.id: edx-pipeline
+  path.config: "/etc/logstash/conf.d/edx.conf"

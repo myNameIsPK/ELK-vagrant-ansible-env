@@ -1,0 +1,14 @@
+cluster.name: elasticsearch
+node.name: node_name
+
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+
+network.host: 0.0.0.0
+http.port: 9200
+
+discovery.seed_hosts: ["192.168.99.101", "192.168.99.102"]
+cluster.initial_master_nodes: ["es1"]
+
+xpack.security.enabled: true
+xpack.monitoring.collection.enabled: true

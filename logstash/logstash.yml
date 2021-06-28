@@ -1,0 +1,17 @@
+node.name: "logstash"
+http.host: 192.168.99.104
+config.reload.automatic: true
+
+path.logs: /var/log/logstash
+path.data: /var/lib/logstash
+
+pipeline.ordered: auto
+# pipeline:
+#   batch:
+#     size: 125
+#     delay: 50
+
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.hosts: ["http://192.168.99.101:9200", "http://192.168.99.102:9200"]
+xpack.monitoring.elasticsearch.username: elastic
+xpack.monitoring.elasticsearch.password: changeme
