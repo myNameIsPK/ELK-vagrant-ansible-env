@@ -1,0 +1,16 @@
+# Elasticsearch
+elasticsearch_download_url: https://artifacts.elastic.co/downloads/elasticsearch/
+elasticsearch_version: elasticsearch-7.13.2
+elasticsearch_yaml: /etc/elasticsearch/elasticsearch.yml
+
+# Logstash
+logstash_download_url: https://artifacts.elastic.co/downloads/logstash/
+logstash_version: logstash-7.13.2
+logstash_config_path: /etc/logstash
+logstash_yaml: /etc/logstash/logstash.yml
+pipelines_yaml: /etc/logstash/pipelines.yml
+
+# Kibana
+kibana_download_url: https://artifacts.elastic.co/downloads/kibana/
+kibana_version: kibana-7.13.2
+kibana_yaml: /etc/kibana/kibana.yml

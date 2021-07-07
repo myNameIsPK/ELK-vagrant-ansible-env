@@ -20,55 +20,55 @@
   roles:
     - elasticsearch
 
-- hosts: es1
-  gather_facts: no
-  tasks:
-    - name: Updating Elastic Config Node Name (es1)
-      become: yes
-      lineinfile:
-        destfile: /etc/elasticsearch/elasticsearch.yml
-        regexp: 'node.name: node_name'
-        line: 'node.name: es1'
+# - hosts: es1
+#   gather_facts: no
+#   tasks:
+#     - name: Updating Elastic Config Node Name (es1)
+#       become: yes
+#       lineinfile:
+#         destfile: /etc/elasticsearch/elasticsearch.yml
+#         regexp: 'node.name: node_name'
+#         line: 'node.name: es1'
 
-    - name: Updating Elastic Config Network Host (es1)
-      become: yes
-      lineinfile:
-        destfile: /etc/elasticsearch/elasticsearch.yml
-        regexp: 'network.host: 0.0.0.0'
-        line: 'network.host: 192.168.99.101'
+#     - name: Updating Elastic Config Network Host (es1)
+#       become: yes
+#       lineinfile:
+#         destfile: /etc/elasticsearch/elasticsearch.yml
+#         regexp: 'network.host: 0.0.0.0'
+#         line: 'network.host: 192.168.99.101'
 
-- hosts: es2
-  gather_facts: no
-  tasks:
-    - name: Updating Elastic Config Node Name (es2)
-      become: yes
-      lineinfile:
-        destfile: /etc/elasticsearch/elasticsearch.yml
-        regexp: 'node.name: node_name'
-        line: 'node.name: es2'
+# - hosts: es2
+#   gather_facts: no
+#   tasks:
+#     - name: Updating Elastic Config Node Name (es2)
+#       become: yes
+#       lineinfile:
+#         destfile: /etc/elasticsearch/elasticsearch.yml
+#         regexp: 'node.name: node_name'
+#         line: 'node.name: es2'
 
-    - name: Updating Elastic Config Network Host (es2)
-      become: yes
-      lineinfile:
-        destfile: /etc/elasticsearch/elasticsearch.yml
-        regexp: 'network.host: 0.0.0.0'
-        line: 'network.host: 192.168.99.102'
+#     - name: Updating Elastic Config Network Host (es2)
+#       become: yes
+#       lineinfile:
+#         destfile: /etc/elasticsearch/elasticsearch.yml
+#         regexp: 'network.host: 0.0.0.0'
+#         line: 'network.host: 192.168.99.102'
     
-    - name: Updating Elastic Config Not Master (es2)
-      become: yes
-      lineinfile:
-        destfile: /etc/elasticsearch/elasticsearch.yml
-        line: 'node.master: false'
+#     - name: Updating Elastic Config Not Master (es2)
+#       become: yes
+#       lineinfile:
+#         destfile: /etc/elasticsearch/elasticsearch.yml
+#         line: 'node.master: false'
 
-- hosts: elasticsearch_server
-  gather_facts: no
-  tasks:
-    - name: Start ElasticSearch Service
-      become: yes
-      service:
-        name: elasticsearch
-        state: started
-        enabled: yes
+# - hosts: elasticsearch_server
+#   gather_facts: no
+#   tasks:
+#     - name: Start ElasticSearch Service
+#       become: yes
+#       service:
+#         name: elasticsearch
+#         state: started
+#         enabled: yes
 
 - hosts: kibana_server
   gather_facts: no

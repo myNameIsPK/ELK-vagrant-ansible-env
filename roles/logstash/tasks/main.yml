@@ -1,55 +1,37 @@
+- name: Include variables
+  include_vars:
+    file: ../../vars.yml
+
 - name: Download Logstash Deb Package
   get_url:
-    url: https://artifacts.elastic.co/downloads/logstash/logstash-7.13.2-amd64.deb
+    url: '{{ logstash_download_url }}{{ logstash_version }}-amd64.deb'
     dest: /tmp
 
 - name: Install Logstash Deb Package
   become: yes
   apt:
-    deb: /tmp/logstash-7.13.2-amd64.deb
+    deb: /tmp/{{ logstash_version }}-amd64.deb
 
 - name: Copy Logstash Config to Remote Servers 
   become: yes
   copy:
     src: ./logstash/logstash.yml
-    dest: /etc/logstash/logstash.yml
+    dest: '{{ logstash_yaml }}'
     backup: yes
 
 - name: Copy Logstash Pipline Config to Remote Servers 
   become: yes
   copy:
     src: ./logstash/pipelines.yml
-    dest: /etc/logstash/pipelines.yml
+    dest: '{{ pipelines_yaml }}'
     backup: yes
 
 - name: Copy Logstash conf.d to Remote Servers 
   become: yes
   copy:
     src: ./logstash/conf.d
-    dest: /etc/logstash
+    dest: '{{ logstash_config_path }}'
     backup: yes
-
-# - name: Create Logstash Pipeline File
-#   become: yes
-#   file:
-#       path: /etc/logstash/conf.d/main.conf
-#       state: touch
-
-# - name: Add Logstash Pipeline Configuration
-#   become: yes
-#   blockinfile:
-#       path: /etc/logstash/conf.d/main.conf
-#       marker: ""
-#       block: |
-#         input {
-#           beats {
-#             port => 5044
-#           }
-#         }
-#         output {
-#           elasticsearch { hosts => ["192.168.28.71:9200"]
-#           }
-#         }
 
 - name: Start Logstash Service
   become: yes

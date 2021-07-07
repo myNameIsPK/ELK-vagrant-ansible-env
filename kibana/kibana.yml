@@ -1,6 +1,6 @@
 server.name: "kibana"
-server.host: 192.168.99.103
-elasticsearch.hosts: ["http://192.168.99.101:9200", "http://192.168.99.102:9200"]
+server.host: 192.168.99.102
+elasticsearch.hosts: ["http://192.168.99.104:9200", "http://192.168.99.105:9200", "http://192.168.99.106:9200"]
 
 elasticsearch.username: elastic
 elasticsearch.password: changeme
