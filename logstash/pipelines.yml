@@ -6,5 +6,7 @@
   path.config: "/etc/logstash/conf.d/apache.conf"
 - pipeline.id: edx-pipeline
   path.config: "/etc/logstash/conf.d/edx.conf"
-- pipeline.id: datalog-pipeline
-  path.config: "/etc/logstash/conf.d/datalog.conf"
+- pipeline.id: auth-pipeline
+  path.config: "/etc/logstash/conf.d/auth.conf"
+# - pipeline.id: datalog-pipeline
+#   path.config: "/etc/logstash/conf.d/datalog.conf"
