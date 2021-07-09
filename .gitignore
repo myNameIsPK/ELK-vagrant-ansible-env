@@ -1,3 +1,4 @@
 .vagrant
 inventory/prod.ini
 inventory.ini
+.sample

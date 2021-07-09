@@ -1,0 +1,8 @@
+server.name: {{ kibana_server_name }}
+server.host: {{ network_host }}
+elasticsearch.hosts: {{ elasticsearch_hosts }}
+
+elasticsearch.username: {{ kibana_es_username }}
+elasticsearch.password: {{ elasticsearch_password }}
+
+monitoring.ui.container.elasticsearch.enabled: true

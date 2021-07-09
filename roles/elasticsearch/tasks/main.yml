@@ -1,7 +1,3 @@
-- name: Include variables
-  include_vars:
-    file: ../../vars.yml
-
 - name: Download Elastic Deb Package
   get_url:
     url: '{{ elasticsearch_download_url }}{{ elasticsearch_version }}-amd64.deb'
@@ -12,26 +8,11 @@
   apt:
     deb: /tmp/{{ elasticsearch_version }}-amd64.deb
 
-- name: Copy Elastic Config to Remote Servers 
+- name: Copy Elasticsearch Config to Remote Servers 
   become: yes
-  copy:
-    src: ./elasticsearch/elasticsearch.yml
-    dest: '{{ elasticsearch_yaml }}'
-    backup: yes
-
-- name: Updating Elastic Config (Node Name)
-  become: yes
-  lineinfile:
-    destfile: /etc/elasticsearch/elasticsearch.yml
-    regexp: 'node.name:'
-    line: 'node.name: {{ inventory_hostname }}'
-
-- name: Update Elastic Config (IP Address)
-  become: yes
-  lineinfile:
-    destfile: '{{ elasticsearch_yaml }}'
-    regexp: 'network.host'
-    line: 'network.host: {{ network_host }}'
+  template:
+    src: ../../templates/elasticsearch.yml
+    dest: "{{ elasticsearch_yaml }}"
 
 - name: Start ElasticSearch Service
   become: yes

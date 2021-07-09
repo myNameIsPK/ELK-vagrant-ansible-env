@@ -1,7 +1,22 @@
 # Elasticsearch
 elasticsearch_download_url: https://artifacts.elastic.co/downloads/elasticsearch/
 elasticsearch_version: elasticsearch-7.13.2
+elasticsearch_config_path: /etc/elasticsearch
 elasticsearch_yaml: /etc/elasticsearch/elasticsearch.yml
+
+cluster_name: elasticsearch
+es_path_data: /var/lib/elasticsearch
+es_path_log: /var/log/elasticsearch
+es_port: 9200
+discovery_seet_hosts: ["192.168.99.104", "192.168.99.105", "192.168.99.106"]
+cluster_initial_master_nodes: ["es1"]
+
+ssl_keystore_path: elastic-certificates.p12
+ssl_truststore_path: elastic-certificates.p12
+
+# Kibana and Logstash
+elasticsearch_hosts: ["http://192.168.99.104:9200", "http://192.168.99.105:9200", "http://192.168.99.106:9200"]
+elasticsearch_password: changeme
 
 # Logstash
 logstash_download_url: https://artifacts.elastic.co/downloads/logstash/
@@ -10,7 +25,19 @@ logstash_config_path: /etc/logstash
 logstash_yaml: /etc/logstash/logstash.yml
 pipelines_yaml: /etc/logstash/pipelines.yml
 
+logstash_node_name: "logstash"
+logstash_path_data: /var/lib/logstash
+logstash_path_logs: /var/log/logstash
+logstash_batch_size: 125
+logstash_batch_delay: 50
+
+logstash_es_username: logstash_system
+logstash_input_port: 5044
 # Kibana
 kibana_download_url: https://artifacts.elastic.co/downloads/kibana/
 kibana_version: kibana-7.13.2
+kibana_config_path: /etc/kibana
 kibana_yaml: /etc/kibana/kibana.yml
+
+kibana_server_name: "kibana"
+kibana_es_username: kibana_system

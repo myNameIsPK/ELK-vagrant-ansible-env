@@ -1,0 +1,20 @@
+cluster.name: {{ cluster_name }}
+node.name: {{ inventory_hostname }}
+
+path.data: {{ es_path_data}}
+path.logs: {{ es_path_log }}
+
+network.host: {{ network_host }}
+http.port: {{ es_port }}
+
+discovery.seed_hosts: {{ discovery_seet_hosts }}
+cluster.initial_master_nodes: {{ cluster_initial_master_nodes }}
+
+xpack.security.enabled: true
+xpack.monitoring.collection.enabled: true
+
+# xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.verification_mode: certificate 
+xpack.security.transport.ssl.client_authentication: required
+# xpack.security.transport.ssl.keystore.path: {{ ssl_keystore_path }}
+# xpack.security.transport.ssl.truststore.path: {{ ssl_truststore_path }}

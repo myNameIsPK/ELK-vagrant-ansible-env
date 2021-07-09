@@ -1,0 +1,17 @@
+node.name: {{ logstash_node_name }}
+http.host: {{ network_host }}
+config.reload.automatic: true
+
+path.logs: {{ logstash_path_data }}
+path.data: {{ logstash_path_logs }}
+
+pipeline.ordered: auto
+pipeline:
+  batch:
+    size: {{ logstash_batch_size }}
+    delay: {{ logstash_batch_delay }}
+
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.hosts: {{ elasticsearch_hosts }}
+xpack.monitoring.elasticsearch.username: {{ logstash_es_username }}
+xpack.monitoring.elasticsearch.password: {{ elasticsearch_password }}

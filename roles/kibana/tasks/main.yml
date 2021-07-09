@@ -1,7 +1,3 @@
-- name: Include variables
-  include_vars:
-    file: ../../vars.yml
-
 - name: Download Kibana Deb Package
   get_url:
     url: '{{ kibana_download_url }}{{ kibana_version }}-amd64.deb'
@@ -14,10 +10,9 @@
 
 - name: Copy Kibana Config to Remote Servers 
   become: yes
-  copy:
-    src: ./kibana/kibana.yml
-    dest: '{{ kibana_yaml }}'
-    backup: yes
+  template:
+    src: ../../templates/kibana.yml
+    dest: "{{ kibana_yaml }}"
 
 - name: Start Kibana Service
   become: yes

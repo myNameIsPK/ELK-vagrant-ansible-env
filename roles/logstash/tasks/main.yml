@@ -1,7 +1,3 @@
-- name: Include variables
-  include_vars:
-    file: ../../vars.yml
-
 - name: Download Logstash Deb Package
   get_url:
     url: '{{ logstash_download_url }}{{ logstash_version }}-amd64.deb'
@@ -14,24 +10,23 @@
 
 - name: Copy Logstash Config to Remote Servers 
   become: yes
-  copy:
-    src: ./logstash/logstash.yml
+  template:
+    src: ../../templates/logstash.yml
     dest: '{{ logstash_yaml }}'
-    backup: yes
 
 - name: Copy Logstash Pipline Config to Remote Servers 
   become: yes
-  copy:
-    src: ./logstash/pipelines.yml
+  template:
+    src: ../../templates/filter/pipelines.yml
     dest: '{{ pipelines_yaml }}'
-    backup: yes
 
 - name: Copy Logstash conf.d to Remote Servers 
   become: yes
-  copy:
-    src: ./logstash/conf.d
-    dest: '{{ logstash_config_path }}'
-    backup: yes
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ logstash_config_path }}/conf.d/{{ item.path }}'
+  with_filetree: ../../templates/filter/conf.d
+  when: item.state == 'file' 
 
 - name: Start Logstash Service
   become: yes
