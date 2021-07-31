@@ -2,8 +2,8 @@ node.name: {{ logstash_node_name }}
 http.host: {{ network_host }}
 config.reload.automatic: true
 
-path.logs: {{ logstash_path_data }}
-path.data: {{ logstash_path_logs }}
+path.logs: {{ logstash_path_logs }}
+path.data: {{ logstash_path_data }}
 
 pipeline.ordered: auto
 pipeline:

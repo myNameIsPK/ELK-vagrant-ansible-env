@@ -1,0 +1,14 @@
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+
+filebeat.inputs:
+- type: stdin
+
+  tags: ["auth", "gzip"]
+  multiline.type: pattern
+  multiline.pattern: '^[[:space:]]'
+  multiline.negate: false
+  multiline.match: after
+
+output.logstash:
+  hosts: ["10.252.93.185:5044"]

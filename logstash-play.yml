@@ -1,0 +1,33 @@
+- hosts: logstash_server
+  gather_facts: yes
+  tasks:
+    - name: Include variables
+      include_vars:
+        file: vars.yml
+
+    - name: Copy Logstash Config to Remote Servers 
+      become: yes
+      template:
+        src: ./templates/logstash.yml
+        dest: '{{ logstash_yaml }}'
+
+    - name: Copy Logstash Pipline Config to Remote Servers 
+      become: yes
+      template:
+        src: ./templates/filter/pipelines.yml
+        dest: '{{ pipelines_yaml }}'
+
+    - name: Copy Logstash conf.d to Remote Servers 
+      become: yes
+      template:
+        src: '{{ item.src }}'
+        dest: '{{ logstash_config_path }}/conf.d/{{ item.path }}'
+      with_filetree: ./templates/filter/conf.d
+      when: item.state == 'file' 
+
+    - name: Start Logstash Service
+      become: yes
+      service:
+        name: logstash
+        state: started
+        enabled: yes
