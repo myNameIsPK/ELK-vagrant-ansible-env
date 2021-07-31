@@ -4,6 +4,17 @@ filebeat.config.modules:
 filebeat.inputs:
 - type: log
   paths:
+
+  #   - c:\elkstack\edx.log
+  # tags: ["edx"]
+
+  #   - c:\elkstack\engineer.access_log
+  #   - c:\elkstack\engineer.error_log
+  # tags: ["apache"]
+
+  #   - d:\log-edx.log
+  # tags: ["datalog"]
+  
     - /var/log/radius/radacct/*/auth-detail-202107.*
   tags: ["auth"]
   multiline.type: pattern
@@ -15,3 +26,8 @@ filebeat.inputs:
 
 output.logstash:
   hosts: ["10.252.93.185:5044"]
+
+# output.elasticsearch:
+#   hosts: ["http://192.168.99.101:9200", "http://192.168.99.102:9200"]
+#   username: elastic
+#   password: changeme
